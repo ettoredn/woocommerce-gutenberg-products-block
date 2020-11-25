@@ -33,6 +33,7 @@
 		"deploy": "npm run build:deploy && sh ./bin/github-deploy.sh",
 		"dev": "rimraf build/* && cross-env BABEL_ENV=default webpack",
 		"explore": "source-map-explorer",
+		"fix-package-lock": "sh ./bin/fix-package-lock.sh",
 		"lint": "npm run lint:php && npm run lint:css && npm run lint:js",
 		"lint:ci": "npm run lint:js && npm run lint:css",
 		"lint:css": "stylelint 'assets/**/*.scss'",
