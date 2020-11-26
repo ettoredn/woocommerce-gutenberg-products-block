@@ -6,7 +6,7 @@ use Automattic\WooCommerce\Blocks\Package;
 use Automattic\WooCommerce\Blocks\Domain\Services\CreateAccount;
 use Automattic\WooCommerce\Blocks\StoreApi\Utilities\CartController;
 use Automattic\WooCommerce\Blocks\StoreApi\Utilities\OrderController;
-use Automattic\WooCommerce\Blocks\StoreApi\Utilities\ReserveStock;
+use Automattic\WooCommerce\Checkout\Helpers\ReserveStock;
 use Automattic\WooCommerce\Blocks\StoreApi\Utilities\ReserveStockException;
 use Automattic\WooCommerce\Blocks\Payments\PaymentResult;
 use Automattic\WooCommerce\Blocks\Payments\PaymentContext;
@@ -327,7 +327,7 @@ class Checkout extends AbstractRoute {
 	protected function create_or_update_draft_order() {
 		$cart_controller  = new CartController();
 		$order_controller = new OrderController();
-		$reserve_stock    = \class_exists( '\Automattic\WooCommerce\Checkout\Helpers\ReserveStock' ) ? new \Automattic\WooCommerce\Checkout\Helpers\ReserveStock() : new ReserveStock();
+		$reserve_stock    = new ReserveStock();
 		$order_object     = $this->get_draft_order_id() ? wc_get_order( $this->get_draft_order_id() ) : null;
 		$created          = false;
 
